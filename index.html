@@ -1,0 +1,168 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Image Converter</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.7/dist/tailwind.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/index.html">ImageConverter</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/About.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/Policy.html">Privacy Policy</a>
+            </li>
+         
+            <li class="nav-item">
+              <a class="nav-link disabled"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <h1 class="text-3xl text-center mb-8 d-flex items-center justify-center">Image Converter</h1>
+
+    <div class="flex flex-col items-center space-y-4 md:flex-row md:justify-center md:space-x-4 md:space-y-0 mb-8">
+      
+      <input type="file" id="image-input" accept="image/*" class="hidden">
+      <button onclick="selectImage()" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded">Select Image</button>
+      <button onclick="convertTo('jpg')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Convert to JPG</button>
+      <button onclick="convertTo('png')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Convert to PNG</button>
+      <button onclick="convertTo('webp')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Convert to WebP</button>
+      <button onclick="convertTo('gif')" class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded">Convert to GIF</button>
+    </div>
+  
+    <div id="image-preview"  class="max-w-sm mx-auto">
+      <img src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png" alt="">
+    </div>
+
+    <main class="container mx-auto my-8">
+    
+      <section class="bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 class="text-2xl text-gray-800 font-bold mb-4">Image Converter: Simplify Your Image Transformation Needs:</h2>
+        <p class="text-gray-600">
+          In today's digital era, images play a crucial role in various aspects of our lives. Whether it's for personal use, professional projects, or online content, having the right image format can make a significant difference. Image converters have emerged as essential tools to help users convert images from one format to another effortlessly. In this article, we will explore the world of image converters, their importance, different types, popular formats, features to consider, and how to choose the right one for your needs.
+        </p>
+      </section>
+      <section class="bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 class="text-2xl text-gray-800 font-bold mb-4">What is an Image Converter?</h2>
+        <p class="text-gray-600">
+          An image converter is software that allows you to transform an image file from one format to another. It provides a user-friendly interface where you can import an image, choose the desired output format, and convert it with just a few clicks. Image converters come with various features, including compression options, editing capabilities, and batch conversion, making them versatile tools for individuals and businesses alike.
+          
+        </p>
+      </section>
+      <section class="bg-white rounded-lg shadow-lg p-6 mt-6">
+        <h2 class="text-2xl text-gray-800 font-bold mb-4">Why Do You Need an Image Converter?</h2>
+        <p class="text-gray-600">
+          There are several reasons why you might need an image converter. Here are a few common scenarios:
+
+          Compatibility: Different devices and applications support specific image formats. If you encounter compatibility issues, an image converter can help you convert the image to a format that works seamlessly with your desired platform.
+          
+          Optimization: Optimizing images for web use is crucial for faster loading times and better user experience. An image converter allows you to compress images without significant loss of quality, reducing file sizes and enhancing website performance.
+          
+          Editing Requirements: Sometimes, you may need to edit an image, but the file format restricts your editing options. By converting the image to a more editable format, you gain more flexibility in making adjustments, such as resizing, cropping, or adding filters.
+        </p>
+      </section>
+    </main>
+    <div class="container mt-80 bg-light">
+      <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+          <li class="nav-item"><a href="/About.html" class="nav-link px-2 text-muted">About</a></li>
+          <li class="nav-item"><a href="/Policy.html" class="nav-link px-2 text-muted">Privacy Policy</a></li>
+          <li class="nav-item"><a href="/Contact.html" class="nav-link px-2 text-muted">Contact Us</a></li>
+        </ul>
+        <p class="text-center text-muted">@ImageConverter</p>
+      </footer>
+    </div>
+
+
+    
+    <script>
+      // JavaScript code for the image conversion
+      let selectedImage;
+  
+      function selectImage() {
+        const input = document.getElementById('image-input');
+        input.onchange = (e) => {
+          selectedImage = e.target.files[0];
+          displayImage();
+        };
+        input.click();
+      }
+  
+      function displayImage() {
+        const preview = document.getElementById('image-preview');
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          const img = document.createElement('img');
+          img.src = e.target.result;
+          img.alt = 'Selected Image';
+          preview.innerHTML = '';
+          preview.appendChild(img);
+        };
+  
+        reader.readAsDataURL(selectedImage);
+      }
+  
+      function convertTo(format) {
+        if (!selectedImage) {
+          alert('Please select an image first!');
+          return;
+        }
+  
+        const reader = new FileReader();
+  
+        reader.onload = (e) => {
+          const convertedImage = e.target.result;
+  
+          const link = document.createElement('a');
+          link.href = convertedImage;
+          link.download = `converted_image.${format}`;
+          link.click();
+        };
+  
+        if (format === 'jpg') {
+          reader.readAsDataURL(selectedImage);
+        } else if (format === 'png' || format === 'webp' || format === 'gif') {
+          const canvas = document.createElement('canvas');
+          const ctx = canvas.getContext('2d');
+          const img = new Image();
+  
+          img.onload = () => {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+  
+            canvas.toBlob((blob) => {
+              reader.readAsDataURL(blob);
+            }, `image/${format}`);
+          };
+  
+          img.src = URL.createObjectURL(selectedImage);
+        }
+      }
+    </script>
+    
+
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    
+  </body>
+</html>
+
+
